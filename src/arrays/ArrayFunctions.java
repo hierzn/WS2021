@@ -73,7 +73,7 @@ public class ArrayFunctions {
                                 sc.nextInt()) + " (" + n + ")");
                         continue;
 
-                    /*case FILTER:
+                    case FILTER:
                         System.out.println("enter size of String array, and strings for each position:");
                         System.out.println("Filter");
                         strings = new String[sc.nextInt()];
@@ -92,7 +92,7 @@ public class ArrayFunctions {
                         display(filter(strings, regex));
 
                         continue;
-*/
+
                 }
                 break;
             }
@@ -124,7 +124,7 @@ public class ArrayFunctions {
 
         public static void linearFill(double [] array, double start, double inc)
         {
-            for(int i = 0; i<array.length-1;i++)
+            for(int i = 0; i<array.length;i++)
             {
                 array[i]=start;
                 start+=inc;
@@ -132,8 +132,8 @@ public class ArrayFunctions {
         }
         public static boolean contains(int [][] array, int key) {
             boolean contain=true;
-            for (int i = 0; i < array.length - 1; i++) {
-                for (int k = 0; k < array[0].length - 1; k++) {
+            for (int i = 0; i < array.length; i++) {
+                for (int k = 0; k < array[0].length; k++) {
                     if (array[i][k] == key) {
                         contain=true;
                         break;
@@ -148,7 +148,7 @@ public class ArrayFunctions {
         public static int countBelow(double [] arr, double a)
         {
             int count=0;
-            for(int i=0;i<arr.length-1;i++)
+            for(int i=0;i<arr.length;i++)
             {
                 if(arr[i]<a)
                 {
@@ -159,20 +159,23 @@ public class ArrayFunctions {
         }
         public static int find(int [] arr, int key)
         {
-            for(int i=0;i<arr.length-1;i++)
+            for(int i=0;i<arr.length;i++)
             {
                 if(arr[i]==key) {
                     return i;
                 }
             }
             return -1;
+            //alternative
+            //return find(arr, key, 0);
         }
         public static int find(int [] arr, int key, int startIdx)
-        {   int find=0;
-            for(int i=0;i<arr.length-1;i++)
+        {   //int find=0;
+            int find= startIdx>=0 ? startIdx:0;
+            for(int i=startIdx;i<arr.length;i++)
             {
                 if(arr[i]==key) {
-                    if(startIdx>=i)
+                    if(i>=startIdx)
                     {
                         find=i;
                         break;
@@ -183,8 +186,25 @@ public class ArrayFunctions {
             }
             return find;
         }
-        public static void filter (String [] arr, String regex)
+        public static String[] filter (String [] arr, String regex)
         {
+            int cnt=0;
+            for (String s : arr)
+            {
+                if(s.matches(regex))
+                    cnt++;
+            }
+            String [] res = new String[cnt];
+            int j=0;
+            for (String s: arr)
+            {
+                if(s.matches(regex))
+                {
+                    res[j]=s;
+                    j++;
+                }
+            }
+            return res;
 
         }
     }
