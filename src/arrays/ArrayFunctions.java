@@ -133,7 +133,7 @@ public class ArrayFunctions {
         public static boolean contains(int [][] array, int key) {
             boolean contain=true;
             for (int i = 0; i < array.length; i++) {
-                for (int k = 0; k < array[0].length; k++) {
+                for (int k = 0; k < array[i].length; k++) {
                     if (array[i][k] == key) {
                         contain=true;
                         break;
